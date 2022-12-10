@@ -1,0 +1,75 @@
+body{
+    overflow: hidden;
+}
+
+.titulo{
+    font-size: 12px;
+    margin-top: 15px;
+}
+
+#cadastrar, #pesquisar, #atualizar, #deletar{
+    margin-top: 20px;
+}
+
+#addNota{
+    height: 28px;
+    margin-left: 50px;
+    margin-top: 20px;
+    width: 28px;
+}
+
+#valorMei{
+    background-color: #e5f0fa;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    height: 7rem;
+    margin-left: 10px;
+    margin-top: 10px;
+    width: 22rem;
+}
+
+#valorNotas{
+    background-color: #eef7ee;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    margin-left: 80px;
+    height: 7rem;   
+    margin-top: 10px;
+    width: 22rem;
+}
+
+#notasLancadas{
+    background-color: #fef6ea;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    margin-left: 80px;
+    height: 7rem;   
+    margin-top: 10px;
+    width: 22rem;
+}
+
+
+#ultimaCompra{
+    background-color: #f7dbda;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    margin-left: 80px;
+    height: 7rem;   
+    margin-top: 10px;
+    width: 22rem;
+}
+
+#pesquisar{
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    height: 30px;
+    padding: 10px;
+    outline: 0;
+    width: 36rem;
+}
+
+.tabelaInformacao{
+    height: 74.8vh;
+    margin-top: 10px;
+    overflow: auto;
+}

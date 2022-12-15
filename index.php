@@ -98,41 +98,7 @@ margin: 0px;
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script><!--Bibliotecas Ajax -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>     
-  <script>
-    //Pegando o evento clique do botão de logar na aplicação
-    $('#entrar').click(function(){
-
-      //Pegando o valor das variaveis de login
-      var user = document.getElementById('txtLogin').value;
-      var pass = document.getElementById('txtSenha').value;
-
-      if(user !== '' && pass !== ''){
-       
-        $.ajax({
-         type: "POST",
-         url: 'valida.php',
-         data:{
-               passUser : user, 
-               passPass : pass
-              },
-              success: function(resultado) {
-
-                $(".retornoLogin").html(resultado);
-              }
-          });
-
-        return false;
-
-      }else{
-
-       document.querySelector('.retornoLogin').innerHTML= '<div class="alert alert-danger" role="alert"> ' + 
-                                                            'Preencha os campos corretamente para continuar !!' + 
-                                                           '</div>';      
-
-      }
-
-    });
-  </script>
+  <script src="./view/js/script.js"></script><!--Script for page timeout-->
  
  </body>
 

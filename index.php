@@ -12,13 +12,14 @@
   <style>
 
 .container {
-width: 100vw;
-height: 100vh;
-display: flex;
-flex-direction: row;
-justify-content: center;
-align-items: center;
+  align-items: center;
+  display: flex;
+  height: 100vh;
+  flex-direction: row;
+  justify-content: center;
+  width: 100vw;
 }
+
 .box {
 width: 300px;
 height: 300px;
@@ -63,42 +64,36 @@ margin: 0px;
   <div class="container">
 
    <div class="box">
-
-    <div class="row">
-
-     <div class="col-sm-6">
-
-      <img id="logo" src="./view/img/login.png">
-
-     </div>
-
-     <div class="col-sm-6">
-
-      <label class="lblInfoUsuario">Usuário</label>
-      <input type="text" id="txtLogin">
-
-      <label class="lblInfoUsuario">Senha</label>
-      <input type="password" id="txtSenha">
-
-      <button class="btn btn-success" id="entrar">Entrar</button>
-
-     </div>
-
-     <div class="col-sm-12">
      
-      <div class="retornoLogin"></div>
+    <form action="valida.php" method="POST">
+  
+     <div class="row">
 
+      <div class="col-sm-6">
+
+       <img id="logo" src="./view/img/login.png">
+
+      </div>
+
+      <div class="col-sm-6"> 
+
+       <label class="lblInfoUsuario">Usuário</label>
+       <input type="text" id="txtLogin" name="user">
+
+       <label class="lblInfoUsuario">Senha</label>
+       <input type="password" id="txtSenha" name="pass">
+
+       <button class="btn btn-success" id="entrar">Entrar</button>
+
+      </div>
+     
      </div>
-      
-    </div>
+
+    </form>
    
    </div>
 
   </div>
-
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script><!--Bibliotecas Ajax -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>     
-  <script src="./view/js/script.js"></script><!--Script for page timeout-->
  
  </body>
 

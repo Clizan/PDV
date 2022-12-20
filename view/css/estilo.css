@@ -1,10 +1,66 @@
+*{margin: 0; padding: 0;}
+
 body{
     overflow: hidden;
+}
+
+.bodyMenu{
+    background-color: #9d5f7e;
+    overflow: hidden;
+}
+
+.menu{
+    background-color: #ab7690;
+    float: left;
+    list-style: none;
+    margin-left: 400px;
+    margin-top: 20px;
+    position: relative;
+    z-index: 99;
+}
+
+.menu li{
+    position: relative;
+    float: left;
+    margin-left: 30px;
+    margin-right: 30px;
+    width: 110px;
+}
+
+.menu li a{color:#fff; text-decoration:none; padding:5px 10px; display:block;}
+
+.menu li a:hover{
+    background:#45102a;
+    color:#fff;
+    -moz-box-shadow:0 3px 10px 0 #CCC;
+    -webkit-box-shadow:0 3px 10px 0 #ccc;
+    text-shadow:0px 0px 5px #fff;
+}
+
+.menu li  ul{
+    background-color: #ab7690;
+    display: none;
+    left: 0;
+    position: absolute;
+    top: 25px;
+    width: 110px;
+}
+
+#home{
+    margin-top: -5px;
 }
 
 .titulo{
     font-size: 12px;
     margin-top: 15px;
+}
+
+.menu li:hover ul, .menu li.over ul{display:block;}
+
+.menu li ul li{
+    display: block;
+    margin-left: 0px;
+    width: 110px;
 }
 
 #cadastrar, #pesquisar, #atualizar, #deletar{
@@ -72,4 +128,19 @@ body{
     height: 74.8vh;
     margin-top: 10px;
     overflow: auto;
+}
+
+.totalProdutos{
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    margin-top: 40px;
+    width: 20%;
+}
+
+.totalVendas{
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    margin-left: 10px;
+    margin-top: 40px;
+    width: 20%;
 }

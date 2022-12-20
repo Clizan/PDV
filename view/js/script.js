@@ -158,41 +158,6 @@ $('#deletar').click(function(){
  
 });
 
- //Açá estamos pegano el evento click do botón que és responsable por hacer lá ación de hacer el login na aplicación
- $('#entrar').click(function(){
-
-  //Acá estamos armazenando los valores registrados en campo text
-  var user = document.getElementById('txtLogin').value;
-  var pass = document.getElementById('txtSenha').value;
-
-  if(user !== '' && pass !== ''){
-   
-    $.ajax({
-     type: "POST",
-     url: './valida.php',
-     data:{
-           passUser : user, 
-           passPass : pass
-          },
-          success: function(resultado) {
-
-            $(".retornoLogin").html(resultado);
-          }
-      });
-
-    return false;
-
-  }else{
-
-   document.querySelector('.retornoLogin').innerHTML= '<div class="alert alert-danger" role="alert"> ' + 
-                                                        'Preencha os campos corretamente para continuar !!' + 
-                                                       '</div>';      
-
-  }
-
-});
-
-
 $(document).ready(function(){
 
  $(document).on('click', '.nova_nota', function(){

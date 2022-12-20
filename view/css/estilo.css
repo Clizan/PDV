@@ -130,17 +130,45 @@ body{
     overflow: auto;
 }
 
+.totalNotas{
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    height: 7rem;
+    margin-left: 100px;
+    margin-top: 40px;
+    padding: 5px;
+    width: 25%;
+}
+
 .totalProdutos{
     border: 1px solid lightgray;
     border-radius: 5px;
+    height: 7rem;
+    margin-left: 35px;
     margin-top: 40px;
-    width: 20%;
+    padding: 5px;
+    width: 25%;
 }
 
 .totalVendas{
     border: 1px solid lightgray;
     border-radius: 5px;
-    margin-left: 10px;
+    height: 7rem;
+    margin-left: 35px;
     margin-top: 40px;
-    width: 20%;
+    padding: 5px;
+    width: 25%;
+}
+
+.viewNotas{
+    font-size: 12px;
+    margin-left: 85px;
+    width: 55.7%;
+}
+
+.viewThead{
+    background-color: black;
+    color: #fff;
+    font-size: 12px;
+    text-transform: uppercase;
 }

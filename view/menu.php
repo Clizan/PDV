@@ -54,19 +54,86 @@
 
     </div>
 
-    <div class="col-sm-3">oi</div>
-    <div class="col-sm-3">oi</div>
-    <div class="col-sm-3 totalProdutos">oi</div>
+    <div class="container">
+
+     <div class="col-sm-4 totalNotas">
     
-    <div class="col-sm-3 totalVendas">
+      <h5>Notas Cadastradas</h5>
+
+     </div>
+
+     <div class="col-sm-4 totalProdutos">
+    
+      <h5>Vendas</h5>
+        
+     </div>
+    
+     <div class="col-sm-4 totalVendas">
      
-     <h5>Vendas</h5>
+      <h5>Vendas</h5>
     
-    </div>
+     </div>
+
+     <div class="col-sm-4 viewNotas">
+
+      <table class="table table-bordered table-sm table-striped">
+  
+       <thead class="viewThead">
+
+        <tr>
+
+         <th scope="col">ID</th>
+         <th scope="col">EMPRESA</th>
+         <th scope="col">CNPJ</th>
+         <th scope="col">I.E</th>
+         <th scope="col">VALOR</th>
+        
+        </tr>
+
+        </thead>
+
+        <tbody>
+
+         <tr>
+
+          <?php 
+            
+           #incluindo a classe conexao
+           include_once '../model/conexao.php';
+
+           #Realizando a consulta das notas cadastradas
+           $sql = $conexao->query("SELECT * FROM loja.ctrl_nota");
+
+           #valida se há retorno ou se há dados cadastrados
+           if($sql->num_rows > 0){
+
+            #percorrendo os resultados que estão armazenados na variavel 'sql' 
+            foreach($sql as $nota){
+
+          ?>
+
+          <td><?php echo $nota['id']?></td>
+          <td><?php echo $nota['nome_empresa']?></td>
+          <td><?php echo $nota['cnpj']?></td>
+          <td><?php echo $nota['ie']?></td>
+          <td><?php echo $nota['valor_nota']?></td>
+  
+         </tr>
+
+         <?php 
+           }
+          }
+         ?>
+        
+        </tbody>
+
+       </table>
+
+     </div>
+
+    </div> 
 
    </div>
-    
-   
 
   </div> 
 

@@ -6,10 +6,18 @@
  #Acá estamos creando el schema caso no existe en database
  $createSchema = $conexao->query("CREATE SCHEMA IF NOT EXISTS loja");
 
+ #Acá estamos creando la database 'ctrl_users
+ $createTableUsers = $conexao->query("CREATE TABLE IF NOT EXISTS loja.ctrl_usuarios
+                                       (
+                                        id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+                                        usuario VARCHAR(70) DEFAULT NULL,
+                                        senha VARCHAR(70) DEFAULT NULL
+                                       )");
+
  #Acá estamos haciendo una inserción del registro para hacer el login en aplicacíon
  $insertUsers = $conexao->query("INSERT INTO loja.ctrl_usuarios(usuario, senha) VALUES ('Admin', 'admin')");
 
- #Acá estamos creando la database 'ctrl_users
+ #Acá estamos creando la database 'ctrl_nota
  $createTableUsers = $conexao->query("CREATE TABLE IF NOT EXISTS loja.ctrl_nota 
                                        (
                                         `numero_nota` INT(11) NOT NULL,

@@ -131,6 +131,7 @@ body{
 }
 
 .totalNotas{
+    background-color: #ab7690;
     border: 1px solid lightgray;
     border-radius: 5px;
     height: 7rem;
@@ -140,7 +141,12 @@ body{
     width: 25%;
 }
 
+.legendaCards{
+    color: #FFF;
+}
+
 .totalProdutos{
+    background-color: #ab7690;
     border: 1px solid lightgray;
     border-radius: 5px;
     height: 7rem;
@@ -151,6 +157,7 @@ body{
 }
 
 .totalVendas{
+    background-color: #ab7690;
     border: 1px solid lightgray;
     border-radius: 5px;
     height: 7rem;
@@ -163,11 +170,12 @@ body{
 .viewNotas{
     font-size: 12px;
     margin-left: 85px;
+    margin-top: 15px;
     width: 55.7%;
 }
 
 .viewThead{
-    background-color: black;
+    background-color: #45102a;
     color: #fff;
     font-size: 12px;
     text-transform: uppercase;

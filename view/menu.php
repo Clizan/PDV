@@ -46,7 +46,15 @@
        
        </li>
 
-  	   <li><a href="#">Relatórios</a></li>
+  	   <li><a href="#">Relatórios</a>
+       
+        <ul>
+ 
+         <li><a href="relatorio.php"><img src="./img/money.png"> Contabilidade </a></li>
+
+        </ul>
+
+       </li>
 
       </ul>
 
@@ -58,19 +66,19 @@
 
      <div class="col-sm-4 totalNotas">
     
-      <h5>Notas Cadastradas</h5>
-
+      <h5 class="legendaCards">Notas Cadastradas</h5> 
+      
      </div>
 
      <div class="col-sm-4 totalProdutos">
     
-      <h5>Vendas</h5>
+      <h5 class="legendaCards">Quantidade de Produtos</h5>
         
      </div>
     
      <div class="col-sm-4 totalVendas">
      
-      <h5>Vendas</h5>
+      <h5 class="legendaCards">Vendas</h5>
     
      </div>
 

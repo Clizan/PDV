@@ -29,4 +29,15 @@
                                         PRIMARY KEY (`numero_nota`) USING BTREE
                                        )");
 
+ #Acá estamos creando la database 'ctrl_produto'
+ $createTableProducts = $conexao->query("CREATE TABLE IF NOT EXISTS loja.ctrl_produto
+                                          (
+	                                       cod_barras INT NOT NULL AUTO_INCREMENT PRIMARY KEY, 
+	                                       desc_produto VARCHAR(255), 
+	                                       qtde INT NOT NULL, 
+	                                       validade DATE, 
+	                                       preco_unitario DECIMAL(10,2), 
+	                                       preco_final DECIMAL(10,2)
+                                          )");
+
 ?>

@@ -32,7 +32,8 @@
  #Acá estamos creando la database 'ctrl_produto'
  $createTableProducts = $conexao->query("CREATE TABLE IF NOT EXISTS loja.ctrl_produto
                                           (
-	                                       cod_barras INT NOT NULL AUTO_INCREMENT PRIMARY KEY, 
+                                           id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, 
+	                                       cod_barras VARCHAR(50), 
 	                                       desc_produto VARCHAR(255), 
 	                                       qtde INT NOT NULL, 
 	                                       validade DATE, 

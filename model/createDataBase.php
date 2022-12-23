@@ -41,4 +41,14 @@
 	                                       preco_final DECIMAL(10,2)
                                           )");
 
+ #Acá estamos creando la database 'ctrl_venda'
+ $createTableSell = $conexao->query("CREATE TABLE IF NOT EXISTS  loja.ctrl_venda
+                                      (
+                                        id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+                                        codigo VARCHAR(50), 
+                                        quantidade INT,
+                                        total DECIMAL(10,2),
+                                        data_venda DATETIME
+                                       )"); 
+
 ?>

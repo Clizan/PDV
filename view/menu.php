@@ -109,7 +109,7 @@
            include_once '../model/conexao.php';
 
            #Realizando a consulta das notas cadastradas
-           $sql = $conexao->query("SELECT * FROM loja.ctrl_produto");
+           $sql = $conexao->query("SELECT cod_barras, desc_produto, qtde, validade FROM loja.ctrl_produto WHERE DATE(NOW()) + INTERVAL 92 DAY");
 
            #valida se há retorno ou se há dados cadastrados
            if($sql->num_rows > 0){

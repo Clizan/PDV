@@ -10,17 +10,17 @@
   <link rel="stylesheet" href="./css/estilo.css">
 
  </head>
- <body>
+ <body class="bodyMenu">
 
   <div class="container" style="margin-top: 50px; border-radius: 5px; height: 89vh">
 
    <form id="venda"  method="POST" action="#">
 
-    <label class="titulo">Código</label>
-    
-    <div class="row mb-3">
-        
+    <div class="row layoutCadastrar">
+            
      <div class="col-sm-4">
+     
+      <label class="titulo">Código</label>
     
       <input type="text" class="form-control" name="codigo">
      

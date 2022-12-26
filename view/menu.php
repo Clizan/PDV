@@ -90,11 +90,10 @@
 
         <tr>
 
-         <th scope="col">ID</th>
-         <th scope="col">EMPRESA</th>
-         <th scope="col">CNPJ</th>
-         <th scope="col">I.E</th>
-         <th scope="col">VALOR</th>
+         <th scope="col">CODIGO_BARRAS</th>
+         <th scope="col">PRODUTO</th>
+         <th scope="col">QUANTIDADE</th>
+         <th scope="col">VALIDADE</th>
         
         </tr>
 
@@ -110,7 +109,7 @@
            include_once '../model/conexao.php';
 
            #Realizando a consulta das notas cadastradas
-           $sql = $conexao->query("SELECT * FROM loja.ctrl_nota");
+           $sql = $conexao->query("SELECT * FROM loja.ctrl_produto");
 
            #valida se há retorno ou se há dados cadastrados
            if($sql->num_rows > 0){
@@ -120,11 +119,10 @@
 
           ?>
 
-          <td><?php echo $nota['id']?></td>
-          <td><?php echo $nota['nome_empresa']?></td>
-          <td><?php echo $nota['cnpj']?></td>
-          <td><?php echo $nota['ie']?></td>
-          <td><?php echo $nota['valor_nota']?></td>
+          <td><?php echo $nota['cod_barras']?></td>
+          <td><?php echo $nota['desc_produto']?></td>
+          <td><?php echo $nota['qtde']?></td>
+          <td><?php echo $nota['validade']?></td>
   
          </tr>
 

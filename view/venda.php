@@ -151,13 +151,20 @@
 
      <div class="col-sm-12">
 
-      <button class="btn btn-success">Finalizar Compra</button>
+      <button class="btn btn-success finallySell">Finalizar Compra</button>
 
      </div>
 
     </div>
    
   </div>
+
+  <script>
+   $('.finallySell').click(function(){
+    alert('Envio');
+   }); 
+
+  </script>
    
  </body>
 

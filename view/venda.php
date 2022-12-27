@@ -36,20 +36,30 @@
     
     #Acá estoy inclyendo una clase que hace la conexión con el banco de datos
     include_once '../model/conexao.php';
-   
+
+    #Acá yo hago la validación se existe datos para la variable
     if(isset($_POST['codigo']) && (!empty($_POST['codigo']))){
 
+     #Variable que recebe el valor con refencia el POST PHP   
      $code = $_POST['codigo']; 
      
+     #Acá estamos selecionando el producto con el código pasado en la variable
      $selectProdutct = mysqli_query($conexao, "SELECT * FROM loja.ctrl_produto WHERE cod_barras = '$code'");
+
+     #La variable sen valor, mas que tendrá un papel importante que és armazenar los resultados del foreach
+     $newPurchase = null;
 
      foreach($selectProdutct AS $infoProduct){
 
-      echo $infoProduct['desc_produto'];  
-      echo $infoProduct['qtde']; 
-      echo $infoProduct['preco_final'];  
+      $newPurchase .= "('" .$code. "', '".$infoProduct['desc_produto'] ."', '" .$infoProduct['qtde']. "', '" .$infoProduct['preco_final']. "'),";   
 
      }
+
+     #Acá estamos sacando la ultima letra de la variable $newPurchase ','
+     $new = substr($newPurchase, 0, -1);
+
+     #Acá vamos inserir en una database sola para dicermos que estamos registrando los produtos vendidos para los clientes
+     $insertTemp = mysqli_query($conexao, "INSERT INTO loja.ctrl_venda_temp (codigo_barras, produto, qtde, preco_final) VALUES " .$new);
 
     }
   

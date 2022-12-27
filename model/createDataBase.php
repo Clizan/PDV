@@ -33,12 +33,12 @@
  $createTableProducts = $conexao->query("CREATE TABLE IF NOT EXISTS loja.ctrl_produto
                                           (
                                            id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, 
-	                                       cod_barras VARCHAR(50), 
-	                                       desc_produto VARCHAR(255), 
-	                                       qtde INT NOT NULL, 
-	                                       validade DATE, 
-	                                       preco_unitario DECIMAL(10,2), 
-	                                       preco_final DECIMAL(10,2)
+	                                         cod_barras VARCHAR(50), 
+	                                         desc_produto VARCHAR(255), 
+	                                         qtde INT NOT NULL, 
+	                                         validade DATE, 
+	                                         preco_unitario DECIMAL(10,2), 
+	                                         preco_final DECIMAL(10,2)
                                           )");
 
  #Acá estamos creando la database 'ctrl_venda'
@@ -50,5 +50,15 @@
                                         total DECIMAL(10,2),
                                         data_venda DATETIME
                                        )"); 
+
+ #Acá estamos creando una database temporaria para que recebir los valores temporales
+ $createTableSellTemp = $conexao->query("CREATE TABLE IF NOT EXISTS loja.ctrl_venda_temp 
+                                         (
+                                          id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+                                          codigo_barras VARCHAR(50), 
+                                          produto VARCHAR(255), 
+                                          qtde INT NOT NULL, 
+                                          preco_final DECIMAL(10,2)
+                                         )");
 
 ?>

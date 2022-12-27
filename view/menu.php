@@ -24,13 +24,13 @@
       <ul class="menu">
     
        <li><a href="menu.php"><img src="./img/home.png" id="home"> Home </a></li>
-	   <li><a href="#"><img src="./img/price.png"> Produtos </a>
+ 	     <li><a href="#"><img src="./img/price.png"> Produtos </a>
 	
         <ul>
 	 
          <li><a href="cadastro.php"><img src="./img/cadastrar.png"> Cadastro </a></li>
-	     <li><a href="estoque.php"><img src="./img/estoque.png"> Estoque </a></li>
-	     <li><a href="venda.php"><img src="./img/venda.png"> Venda </a></li>
+	       <li><a href="estoque.php"><img src="./img/estoque.png"> Estoque </a></li>
+	       <li><a href="venda.php"><img src="./img/venda.png"> Venda </a></li>
      
         </ul>
     

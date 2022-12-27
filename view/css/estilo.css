@@ -188,3 +188,29 @@ body{
     font-size: 12px;
     text-transform: uppercase;
 }
+
+.tableSell{ 
+    height: 50vh;
+    margin-top: 10px;
+    overflow: auto;
+    text-align: center;
+}
+
+.rowSell{
+    margin-top: 10px;
+}
+
+#lblCompra{
+    color: #000;
+    font-size: 20px;
+    margin-top: 18px;
+}
+
+#totalSell{
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    height: 60px;
+    font-size: 30px;
+    outline: 0;
+    width: 100%;
+}

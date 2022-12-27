@@ -1,3 +1,10 @@
+<?php 
+  
+  #Acá estoy inclyendo una clase que hace la conexión con el banco de datos
+  include_once '../model/conexao.php';
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
  <head>
@@ -28,14 +35,9 @@
    
     </div>
 
-   <button type="submit" class="btn btn-success" id="registrar">Registrar</button>
-
    </form>
   
    <?php 
-    
-    #Acá estoy inclyendo una clase que hace la conexión con el banco de datos
-    include_once '../model/conexao.php';
 
     #Acá yo hago la validación se existe datos para la variable
     if(isset($_POST['codigo']) && (!empty($_POST['codigo']))){
@@ -60,10 +62,100 @@
 
      #Acá vamos inserir en una database sola para dicermos que estamos registrando los produtos vendidos para los clientes
      $insertTemp = mysqli_query($conexao, "INSERT INTO loja.ctrl_venda_temp (codigo_barras, produto, qtde, preco_final) VALUES " .$new);
-
     }
-  
+   
    ?>
+
+    <div class="tableSell">
+    
+     <table class="table table-sm table-striped">
+  
+      <thead class="viewThead">
+
+       <tr>
+
+        <th scope="col">CODIGO_BARRAS</th>
+        <th scope="col">PRODUTO</th>
+        <th scope="col">QUANTIDADE</th>
+        <th scope="col">VALOR</th>
+        
+       </tr>
+
+      </thead>
+
+      <tbody>
+
+       <tr>
+
+        <?php 
+           
+         #Acá estamos selecionando los productos que el cliente está comprando
+         $selectTempSell = mysqli_query($conexao, "SELECT codigo_barras, produto, qtde, preco_final FROM loja.ctrl_venda_temp");
+
+         #Acá estamos checkando se existe algun producto en la database
+         if($selectTempSell->num_rows > 0){
+      
+          foreach($selectTempSell as $products){
+        ?>
+
+          <td><?php echo $products['codigo_barras']?></td>
+          <td><?php echo $products['produto']?></td>
+          <td><?php echo $products['qtde']?></td>
+          <td><?php echo $products['preco_final']?></td>
+  
+       </tr>
+
+        <?php 
+          }
+         }
+        ?>
+        
+       </tbody>
+
+      </table>
+
+    </div>
+
+    <div class="row rowSell">
+
+     <div class="col-sm-6"></div>
+     
+     <div class="col-sm-2"></div>
+     
+     <div class="col-sm-2">
+        
+      <label id="lblCompra"> Total Compra </label>
+      
+     </div>
+
+     <div class="col-sm-2">
+     
+      <?php 
+       #Acá estamos selecionando el total de la compra hecha
+       $totPurcharse = mysqli_query($conexao, "SELECT SUM(preco_final) AS total FROM loja.ctrl_venda_temp"); 
+      
+       if($totPurcharse->num_rows > 0){
+
+        #Acá no necesita percorrer el foreach, porque és un unico registro que tendré con el valor final
+        $tot = mysqli_fetch_array($totPurcharse);
+
+      ?>
+      
+       <input type="text" id="totalSell" value=" R$ <?php echo $tot['total']?>">
+     
+      <?php
+       }
+      ?>
+     
+     </div>
+
+     <div class="col-sm-12">
+
+      <button class="btn btn-success">Finalizar Compra</button>
+
+     </div>
+
+    </div>
    
   </div>
    

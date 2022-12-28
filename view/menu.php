@@ -15,9 +15,9 @@
 
   <div class="containe-fluid">
 
-   <div class="row">
+   <div class="row externa">
 
-    <div class="col-sm-12 headerMenu">
+    <div class="col-sm-12 interna">
 
      <nav>
    
@@ -143,13 +143,13 @@
 
        </table>
 
-     </div>
+      </div>
 
-    </div> 
+     </div> 
 
-   </div>
+    </div>
 
-  </div> 
+   </div> 
 
  </body>
 

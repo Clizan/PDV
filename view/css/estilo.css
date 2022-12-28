@@ -9,11 +9,22 @@ body{
     overflow: hidden;
 }
 
+.externa{
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.interna{
+    width: auto;
+}
+
 .menu{
     background-color: #ab7690;
     float: left;
     list-style: none;
-    margin-left: 400px;
     margin-top: 20px;
     position: relative;
     z-index: 99;

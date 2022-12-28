@@ -19,6 +19,53 @@
  </head>
  <body class="bodyMenu">
 
+  <div class="row externa">
+
+   <div class="col-sm-12 interna">
+ 
+    <nav>
+
+     <ul class="menu">
+
+      <li><a href="menu.php"><img src="./img/home.png" id="home"> Home </a></li>
+      <li><a href="#"><img src="./img/price.png"> Produtos </a>
+
+       <ul>
+
+        <li><a href="cadastro.php"><img src="./img/cadastrar.png"> Cadastro </a></li>
+        <li><a href="estoque.php"><img src="./img/estoque.png"> Estoque </a></li>
+        <li><a href="venda.php"><img src="./img/venda.png"> Venda </a></li>
+
+       </ul>
+
+      </li>
+
+      <li><a href="#"> Notas </a>
+ 
+       <ul>
+  
+        <li><a href="notaFiscal.php"><img src="./img/cadastrar.png"> Cadastrar</a></li>
+
+       </ul>
+
+      </li>
+
+      <li><a href="#">Relatórios</a>
+
+       <ul>
+
+        <li><a href="relatorio.php"><img src="./img/money.png"> Contabilidade </a></li>
+
+       </ul>
+
+      </li>
+
+     </ul>
+
+    </nav>
+
+   </div>
+
   <div class="container" style="margin-top: 50px; border-radius: 5px; height: 89vh">
 
    <form id="venda"  method="POST" action="#">

@@ -54,7 +54,7 @@
  #Acá estamos creando una database temporaria para que recebir los valores temporales
  $createTableSellTemp = $conexao->query("CREATE TABLE IF NOT EXISTS loja.ctrl_venda_temp 
                                          (
-                                          id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+                                          id_venda INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
                                           codigo_barras VARCHAR(50), 
                                           produto VARCHAR(255), 
                                           qtde INT NOT NULL, 

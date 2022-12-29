@@ -87,6 +87,14 @@
    }
   }
 
+  #Acá donde ocorerá el delete del product en la tabela temporaria
+  function deleteSell($conexao, $getProduct){
+
+   #Acá la instrución para realizar el delete del producto vendido 
+   $deleteProduct = mysqli_query($conexao, "DELETE FROM loja.ctrl_venda_temp WHERE id_venda = '$getProduct'"); 
+
+  }
+
   #Acá estamos checkando se la variable existe, cuando nosotros pasamos por Javascript
   if(isset($_POST['passCodebar']) && (!empty($_POST['passCodebar']))){
 
@@ -139,80 +147,41 @@
 
   }
 
- #Populando o modal da tabela principal 
- if(isset($_POST['passCadastroNota']) && (!empty($_POST['passCadastroNota']))){
+  if(isset($_POST['subtotal']) && !empty($_POST['subtotal'])){
 
-  #Criando a variavle de resultado
-  $resultado = '';
+   $resultado = null;
 
-  #fazendo a consulta no banco de dados
-  $sqlNota = mysqli_query($conexao , "SELECT LPAD(MAX(id) + 1, 10, '0') as nota FROM loja.ctrl_nota");
+   $resultado .= '<dl class="row">';
+   $resultado .= '<dt class="col-sm-3"> Subtotal</dt>';
+   $resultado .= '<dd class="col-sm-9"><label style="border: 1px solid lightgray; border-radius: 5px; color: red; height: 25px; padding-left: 10px; width: 20%">' .$_POST['subtotal']. '</label></dd>';
+   $resultado .= '<br />';
+   $resultado .= '<dt class="col-sm-3"> Desconto</dt>';
+   $resultado .= '<dd class="col-sm-9"><input type="text" id="discont" style="border: 1px solid lightgray; border-radius: 5px; height: 25px; padding-left: 10px"></dd>';
+   $resultado .= '<br /><br />';
+   $resultado .= '<dt class="col-sm-3"> Total</dt>';
+   $resultado .= '<dd class="col-sm-9"><input type="text" id="total" style="border: 1px solid lightgray; border-radius: 5px; height: 25px; padding-left: 10px"></dd>';
+   $resultado .= '<br /><br />';
+   $resultado .= '<dt class="col-sm-12"> Formas de Pagamento</dt>';
+   $resultado .= '<dd class="col-sm-12"><hr style="margin-top: 5px"></dd>';
+   $resultado .= '<dd class="3"><input type="radio" id="credito" name="pagamento" value="Crédito" style="margin-left: 15px"> Crédito';
+   $resultado .= '<input type="radio" id="debito" name="pagamento" value="Dédito" style="margin-left: 15px"> Débito';
+   $resultado .= '<input type="radio" id="dinheiro" name="pagamento" value="Dinheiro" style="margin-left: 15px"> Dinheiro </dd>';
+   $resultado .= '</dl>'; 
 
-  #variavel global
-  $codNota      = null;
-
-  foreach($sqlNota as $row){
-   $codNota .= $row['nota'];
-
+   echo $resultado;
+   
   }
 
-  if($codNota === ""){
-   $codNota  = '00000000001'; 
+  #Acá yo estoy haciendo la validación del valor pasado por AJAX
+  if(isset($_POST['delete']) && !empty($_POST['delete'])){
+   
+   #Variable con valor del AJAX 
+   $getProduct = $_POST['delete'];
+   
+   #La Funcíon que hará el descarte del registro en database
+   deleteSell($conexao, $getProduct);
+
   }
-
-  $resultado .= '<div class="row">';
-  $resultado .= '<div class="col-sm-12">';
-  $resultado .= '<label> Nota Nº </label>';
-  $resultado .= '<input type="text" value="'  .$codNota. '" style="border: 1px solid lightgray; border-radius: 5px; height: 25px; outline: 0; margin-left: 10px; width: 20.4%; padding-left: 5px"; disabled>';
-  $resultado .= '</div>';
-  $resultado .= '<div class="col-sm-4">';
-  $resultado .= '<label style="margin-top: 10px;"> CNPJ </label>';
-  $resultado .= '<input type="text" id="cnpj" style="border: 1px solid lightgray; border-radius: 5px; height: 25px; outline: 0; margin-left: 25px; width: 65% !important; padding-left: 5px">';
-  $resultado .= '</div>';
-  $resultado .= '<div class="col-sm-8">';
-  $resultado .= '<label style="margin-top: 10px;"> RAZÃO SOCIAL </label>';
-  $resultado .= '<input type="text" id="razao_social" style="border: 1px solid lightgray; border-radius: 5px; height: 25px; outline: 0; margin-left: 10px; width: 70% !important; padding-left: 5px">';
-  $resultado .= '</div>';
-  $resultado .= '<div class="col-sm-12">';
-  $resultado .= '<label style="margin-top: 10px;"> I.E </label>';
-  $resultado .= '<input type="text" id="ie" style="border: 1px solid lightgray; border-radius: 5px; height: 25px; outline: 0; margin-left: 37px; width: 87% !important; padding-left: 5px">';
-  $resultado .= '</div>';
-  $resultado .= '<div class="col-sm-6">';
-  $resultado .= '<label style="margin-top: 10px;"> Endereço </label>';
-  $resultado .= '<input type="text" id="endereco" style="border: 1px solid lightgray; border-radius: 5px; height: 25px; outline: 0; margin-left: 7px; width: 75%; padding-left: 5px">';
-  $resultado .= '</div>';
-  $resultado .= '<div class="col-sm-6">';
-  $resultado .= '<label style="margin-top: 10px;"> Bairro </label>';
-  $resultado .= '<input type="text" id="bairro" style="border: 1px solid lightgray; border-radius: 5px; height: 25px; outline: 0; margin-left: 6px; width: 79%; padding-left: 5px">';
-  $resultado .= '</div>';
-  $resultado .= '<div class="col-sm-4">';
-  $resultado .= '<label style="margin-top: 10px;"> CEP </label>';
-  $resultado .= '<input type="text" id="cep" style="border: 1px solid lightgray; border-radius: 5px; height: 25px; outline: 0; margin-left: 32px; width: 65%; padding-left: 5px">';
-  $resultado .= '</div>';
-  $resultado .= '<div class="col-sm-5">';
-  $resultado .= '<label style="margin-top: 10px;"> Municipio </label>';
-  $resultado .= '<input type="text" id="cidade" style="border: 1px solid lightgray; border-radius: 5px; height: 25px; outline: 0; margin-left: 5px; width: 70%; padding-left: 5px">';
-  $resultado .= '</div>';
-  $resultado .= '<div class="col-sm-3">';
-  $resultado .= '<label style="margin-top: 10px;"> UF </label>';
-  $resultado .= '<input type="text" id="uf" style="border: 1px solid lightgray; border-radius: 5px; height: 25px; outline: 0; margin-left: 5px; width: 70%; padding-left: 5px">';
-  $resultado .= '</div>';
-  $resultado .= '<div class="col-sm-4">';
-  $resultado .= '<label style="margin-top: 10px;"> Telefone</label>';
-  $resultado .= '<input type="text" id="tel" style="border: 1px solid lightgray; border-radius: 5px; height: 25px; outline: 0; margin-left: 10px; width: 65%; padding-left: 5px">';
-  $resultado .= '</div>';
-  $resultado .= '<div class="col-sm-4">';
-  $resultado .= '<label style="margin-top: 10px;"> Valor R$</label>';
-  $resultado .= '<input type="number" id="valor" min="1" style="border: 1px solid lightgray; border-radius: 5px; height: 25px; outline: 0; margin-left: 15px; width: 60%; padding-left: 5px">';
-  $resultado .= '</div>';
-  $resultado .= '<div class="col-sm-4">';
-  $resultado .= '<label style="margin-top: 10px;"> Emissão </label>';
-  $resultado .= '<input type="text" id="emissao" value="' . date('Y-m-d H:i:s'). '" style="border: 1px solid lightgray; border-radius: 5px; height: 25px; outline: 0; margin-left: 3px; width: 63%; padding-left: 1px">';
-  $resultado .= '</div>';
-
-  echo $resultado;  
-
- }
 
  ?>
 

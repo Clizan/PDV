@@ -66,52 +66,52 @@
 
    </div>
 
-  <div class="container" style="margin-top: 50px; border-radius: 5px; height: 89vh">
+   <div class="container">
 
-   <form id="venda"  method="POST" action="#">
+    <form id="venda"  method="POST" action="#">
 
-    <div class="row layoutCadastrar">
+     <div class="row layoutCadastrar">
             
-     <div class="col-sm-4">
-     
-      <label class="titulo">Código</label>
+      <div class="col-sm-4">
+      
+       <label class="titulo">Código</label>
     
-      <input type="text" class="form-control" name="codigo">
+       <input type="text" class="form-control" name="codigo">
      
+      </div>
+   
      </div>
-   
-    </div>
 
-   </form>
+    </form>
   
-   <?php 
+    <?php 
 
-    #Acá yo hago la validación se existe datos para la variable
-    if(isset($_POST['codigo']) && (!empty($_POST['codigo']))){
+     #Acá yo hago la validación se existe datos para la variable
+     if(isset($_POST['codigo']) && (!empty($_POST['codigo']))){
 
-     #Variable que recebe el valor con refencia el POST PHP   
-     $code = $_POST['codigo']; 
+      #Variable que recebe el valor con refencia el POST PHP   
+      $code = $_POST['codigo']; 
      
-     #Acá estamos selecionando el producto con el código pasado en la variable
-     $selectProdutct = mysqli_query($conexao, "SELECT * FROM loja.ctrl_produto WHERE cod_barras = '$code'");
+      #Acá estamos selecionando el producto con el código pasado en la variable
+      $selectProdutct = mysqli_query($conexao, "SELECT * FROM loja.ctrl_produto WHERE cod_barras = '$code'");
 
-     #La variable sen valor, mas que tendrá un papel importante que és armazenar los resultados del foreach
-     $newPurchase = null;
+      #La variable sen valor, mas que tendrá un papel importante que és armazenar los resultados del foreach
+      $newPurchase = null;
 
-     foreach($selectProdutct AS $infoProduct){
+      foreach($selectProdutct AS $infoProduct){
 
-      $newPurchase .= "('" .$code. "', '".$infoProduct['desc_produto'] ."', '" .$infoProduct['qtde']. "', '" .$infoProduct['preco_final']. "'),";   
+       $newPurchase .= "('" .$code. "', '".$infoProduct['desc_produto'] ."', '" .$infoProduct['qtde']. "', '" .$infoProduct['preco_final']. "'),";   
 
+      }
+
+      #Acá estamos sacando la ultima letra de la variable $newPurchase ','
+      $new = substr($newPurchase, 0, -1);
+
+      #Acá vamos inserir en una database sola para dicermos que estamos registrando los produtos vendidos para los clientes
+      $insertTemp = mysqli_query($conexao, "INSERT INTO loja.ctrl_venda_temp (codigo_barras, produto, qtde, preco_final) VALUES " .$new);
      }
-
-     #Acá estamos sacando la ultima letra de la variable $newPurchase ','
-     $new = substr($newPurchase, 0, -1);
-
-     #Acá vamos inserir en una database sola para dicermos que estamos registrando los produtos vendidos para los clientes
-     $insertTemp = mysqli_query($conexao, "INSERT INTO loja.ctrl_venda_temp (codigo_barras, produto, qtde, preco_final) VALUES " .$new);
-    }
    
-   ?>
+    ?>
 
     <div class="tableSell">
     
@@ -125,6 +125,7 @@
         <th scope="col">PRODUTO</th>
         <th scope="col">QUANTIDADE</th>
         <th scope="col">VALOR</th>
+        <th scope="col">AÇÃO</th>
         
        </tr>
 
@@ -137,7 +138,7 @@
         <?php 
            
          #Acá estamos selecionando los productos que el cliente está comprando
-         $selectTempSell = mysqli_query($conexao, "SELECT codigo_barras, produto, qtde, preco_final FROM loja.ctrl_venda_temp");
+         $selectTempSell = mysqli_query($conexao, "SELECT id_venda, codigo_barras, produto, qtde, preco_final FROM loja.ctrl_venda_temp");
 
          #Acá estamos checkando se existe algun producto en la database
          if($selectTempSell->num_rows > 0){
@@ -149,8 +150,11 @@
           <td><?php echo $products['produto']?></td>
           <td><?php echo $products['qtde']?></td>
           <td><?php echo $products['preco_final']?></td>
+          <td>
+            <button class="btn btn-danger deleteProducts" id="<?php $products['id_venda']?>"> Excluir </button>
+          </td>
   
-       </tr>
+        </tr>
 
         <?php 
           }
@@ -161,55 +165,142 @@
 
       </table>
 
-    </div>
+     </div>
 
-    <div class="row rowSell">
+     <div class="row rowSell">
 
-     <div class="col-sm-6"></div>
+      <div class="col-sm-8"></div>
      
-     <div class="col-sm-2"></div>
-     
-     <div class="col-sm-2">
+      <div class="col-sm-2">
         
-      <label id="lblCompra"> Total Compra </label>
+       <label id="lblCompra"> Subtotal </label>
       
-     </div>
+      </div>
 
-     <div class="col-sm-2">
+      <div class="col-sm-2">
      
-      <?php 
-       #Acá estamos selecionando el total de la compra hecha
-       $totPurcharse = mysqli_query($conexao, "SELECT SUM(preco_final) AS total FROM loja.ctrl_venda_temp"); 
+       <?php 
+        #Acá estamos selecionando el total de la compra hecha
+        $totPurcharse = mysqli_query($conexao, "SELECT SUM(preco_final) AS total FROM loja.ctrl_venda_temp"); 
       
-       if($totPurcharse->num_rows > 0){
+        if($totPurcharse->num_rows > 0){
 
-        #Acá no necesita percorrer el foreach, porque és un unico registro que tendré con el valor final
-        $tot = mysqli_fetch_array($totPurcharse);
+         #Acá no necesita percorrer el foreach, porque és un unico registro que tendré con el valor final
+         $tot = mysqli_fetch_array($totPurcharse);
 
-      ?>
+       ?>
       
-       <input type="text" id="totalSell" value=" R$ <?php echo $tot['total']?>">
-     
+        <input type="text" class="totalSell" value=" R$ <?php echo $tot['total']?>">
+
+      </div>
+
+      <div class="col-sm-12">
+
+       <button class="btn btn-success checkout"  id="<?php echo $tot['total']?>">Pagamento</button>
+
+      </div>
+
       <?php
-       }
-      ?>
-     
+        }
+       ?>
+
      </div>
+   
+    </div>
 
-     <div class="col-sm-12">
+   </div>
 
-      <button class="btn btn-success finallySell">Finalizar Compra</button>
+   <!--Modal -->
+   <div id="view_total" class="modal fade" role="dialog">
+  
+    <div class="modal-dialog">
 
+     <!-- Modal content-->
+     <div class="modal-content">
+     
+      <div class="modal-header">
+      
+       <button type="button" class="close" data-dismiss="modal">&times;</button>
+       <h4 class="modal-title">Pagamento</h4>
+      
+      </div>
+      
+      <div class="modal-body">
+      
+       <span id="view_close"></span>
+      
+      </div>
+      
+      <div class="modal-footer">
+      
+       <button type="button" class="btn btn-primary" data-dismiss="modal">Finalizar Compra</button>
+      
+      </div>
+    
      </div>
 
     </div>
-   
-  </div>
+
+   </div>
 
   <script>
-   $('.finallySell').click(function(){
-    alert('Envio');
+   $(document).ready(function(){
+    
+    $(document).on('click', '.checkout', function(){
+
+      var subtotal = $(this).attr("id");
+
+      //Acá estamos checando se existe valor
+      if(subtotal !== ''){
+        
+       var dados = {
+                    subtotal : subtotal
+                   }; 
+
+       //Acá estamos llamando la pagina que irá hacer la consulta y finalización del total, registrando la fuerma del pago
+       $.post('../controller/registro.php', dados, function(retorna){
+
+        //Acá yo estoy ponendo el valores en span, esos están en la página registro.php
+        $("#view_close").html(retorna);
+
+        //Acá yo estoy haciendo el caregamiento de los dados de encerramiento
+        $("#view_total").modal('show');
+
+       }); 
+
+      }
+
+    });
+    
    }); 
+
+   $('.deleteProducts').click(function(){
+
+    var deleteProduct = $(this).attr("id");
+
+    alert(deleteProduct);
+
+    //Acá yo solo hago la validación, pues siempre tendrá un valor
+    if(deleteProduct !== ''){
+
+     $.ajax({
+          type: 'POST',
+          url: '../controller/registro.php',
+          data:{
+                 delete  : deleteProduct
+               },
+                success: function (resultado) {
+                 $(".retorno").html(resultado);
+
+                setTimeout(function() {
+                   window.location.reload(1);
+                 }, 1800); // 3 minutos
+               }, 
+     });
+
+    }
+
+   });
 
   </script>
    

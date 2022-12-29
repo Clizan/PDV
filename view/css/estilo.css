@@ -217,11 +217,13 @@ body{
     margin-top: 18px;
 }
 
-#totalSell{
+.totalSell{
     border: 1px solid lightgray;
     border-radius: 5px;
+    color: red;
     height: 60px;
     font-size: 30px;
+    font-weight: bold;
     outline: 0;
     width: 100%;
 }

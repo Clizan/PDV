@@ -79,22 +79,6 @@
        <input type="text" class="form-control" name="codigo">
      
       </div>
-
-      <div class="col-sm-4">
-      
-       <label class="titulo">Quantidade</label>
-   
-       <input type="text" class="form-control" name="qtd">
-    
-      </div>
-
-      <div class="col-sm-4">
-      
-       <label class="titulo">Valor Unitário</label>
-  
-       <input type="text" class="form-control" name="valor_uni">
-   
-      </div>
    
      </div>
 
@@ -125,6 +109,8 @@
 
       #Acá vamos inserir en una database sola para dicermos que estamos registrando los produtos vendidos para los clientes
       $insertTemp = mysqli_query($conexao, "INSERT INTO loja.ctrl_venda_temp (codigo_barras, produto, qtde, preco_final) VALUES " .$new);
+
+      header("Refresh: 0; url=venda.php");
      }
    
     ?>
@@ -294,8 +280,6 @@
 
     var deleteProduct = $(this).attr("id");
 
-    alert(deleteProduct);
-
     //Acá yo solo hago la validación, pues siempre tendrá un valor
     if(deleteProduct !== ''){
 
@@ -310,7 +294,7 @@
 
                 setTimeout(function() {
                    window.location.reload(1);
-                 }, 1800); // 3 minutos
+                 }, 180); // 3 minutos
                }, 
      });
 

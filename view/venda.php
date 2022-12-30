@@ -110,6 +110,7 @@
       #Acá vamos inserir en una database sola para dicermos que estamos registrando los produtos vendidos para los clientes
       $insertTemp = mysqli_query($conexao, "INSERT INTO loja.ctrl_venda_temp (codigo_barras, produto, qtde, preco_final) VALUES " .$new);
 
+      #Acá después del input és necesario hacer la actualización, pues tiene el resultado del POST
       header("Refresh: 0; url=venda.php");
      }
    

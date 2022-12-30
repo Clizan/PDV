@@ -19,9 +19,9 @@
  </head>
  <body class="bodyMenu">
 
-  <div class="row externa">
+  <div class="row">
 
-   <div class="col-sm-12 interna">
+   <div class="col-sm-12">
  
     <nav>
 
@@ -66,7 +66,7 @@
 
    </div>
 
-   <div class="container">
+   <div class="container" style="margin-top: 60px">
 
     <form id="venda"  method="POST" action="#">
 
@@ -78,6 +78,22 @@
     
        <input type="text" class="form-control" name="codigo">
      
+      </div>
+
+      <div class="col-sm-4">
+      
+       <label class="titulo">Quantidade</label>
+   
+       <input type="text" class="form-control" name="qtd">
+    
+      </div>
+
+      <div class="col-sm-4">
+      
+       <label class="titulo">Valor Unitário</label>
+  
+       <input type="text" class="form-control" name="valor_uni">
+   
       </div>
    
      </div>
@@ -151,7 +167,7 @@
           <td><?php echo $products['qtde']?></td>
           <td><?php echo $products['preco_final']?></td>
           <td>
-            <button class="btn btn-danger deleteProducts" id="<?php $products['id_venda']?>"> Excluir </button>
+            <button class="btn btn-danger deleteProducts" id="<?php echo $products['id_venda']?>"> Excluir </button>
           </td>
   
         </tr>

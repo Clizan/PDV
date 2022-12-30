@@ -236,7 +236,7 @@
       
       <div class="modal-footer">
       
-       <button type="button" class="btn btn-primary" data-dismiss="modal">Finalizar Compra</button>
+       <button type="button" class="btn btn-primary finish" data-dismiss="modal">Finalizar Compra</button>
       
       </div>
     
@@ -268,6 +268,9 @@
 
         //Acá yo estoy haciendo el caregamiento de los dados de encerramiento
         $("#view_total").modal('show');
+
+        //Acá tendremos las informaciones que están se pasando en span del modal
+        var mitigation = document.getElementById('discont').value;
 
        }); 
 

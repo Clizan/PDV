@@ -18,9 +18,9 @@
  </head>
  <body class="bodyMenu">
 
-  <div class="row externa">
+  <div class="row">
 
-   <div class="col-sm-12 interna">
+   <div class="col-sm-12">
 
     <nav>
 

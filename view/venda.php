@@ -272,6 +272,27 @@
         //Acá tendremos las informaciones que están se pasando en span del modal
         var mitigation = document.getElementById('discont').value;
 
+        $('.finish').click(function(){
+
+         var finalizarVenda = true;
+
+         $.ajax({
+          type: 'POST',
+          url: '../controller/registro.php',
+          data:{
+                 passPurchase  : finalizarVenda
+               },
+                success: function (resultado) {
+                 $(".retorno").html(resultado);
+
+                setTimeout(function() {
+                   window.location.reload(1);
+                 }, 180); // 3 minutos
+               }, 
+         });         
+
+        });
+
        }); 
 
       }

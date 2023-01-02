@@ -5,6 +5,9 @@
   #Acá la inclusíon da clase conexíon
   include_once '../model/conexao.php';
 
+  #Acá yo estoy definindo la timezona del país para que el horário y data estenjan corectas
+  date_default_timezone_set('America/Sao_Paulo');
+
   #Acá la funcíon para hacer la insercíon en database
   function insertProduct($conexao, $getCode, $getProduct, $getQtd, $getValidity, $getUnitary, $getTotal){
    #Acá yo hago la insercíon dos datos ya adquiridos en variables por isset y empty  
@@ -170,6 +173,42 @@
 
    echo $resultado;
    
+  }
+
+  #Acá estoy cerrando la compra hecha por una persona
+  if(isset($_POST['passPurchase']) && !empty('passPurchase')){
+
+   #Haciendo el select en la tabela temporaria para colocar los datos en la tabela principal 
+   $selectTempSell = mysqli_query($conexao, "SELECT * FROM loja.ctrl_venda_temp"); 
+
+   #Acá estoy pegando el horario correcto para inserir en la tabela principal
+   $dataVenda = date('Y-m-d H:i:s');
+
+   #una variable vazia que tendrá a ser usada para hacer el concate de informaciones
+   $tranferSell = null;
+
+   #Acé estiy haciendo una validación que tendrá el objectivo de decir se existe o no datos
+   if($selectTempSell->num_rows > 0){
+    
+    #Acá estoy percorriendo los datos encuentrados en la database
+    foreach($selectTempSell as $sell){
+
+     #Haciendo la concatenación del datos 
+     $tranferSell .= "('" .$sell['codigo_barras']. "', '" .$sell['qtde']. "', '" .$sell['preco_final']. "', '" .$dataVenda. "'),";   
+
+    }
+    
+    #acá estoy sacando la ultima variable de la variable '$transferSell'
+    $new = substr($tranferSell, 0, -1);
+
+    #Acá voy hacer el insert en la database principale
+    $insertCtrlVenda = mysqli_query($conexao, "INSERT INTO loja.ctrl_venda(codigo, quantidade, total, data_venda) VALUES " . $new);
+
+    #Acá estoy haciendo el delete de las informaciones en la tabela temporaria
+    $deletaTempVenda = mysqli_query($conexao, "DELETE FROM loja.ctrl_venda_temp");
+
+   }
+
   }
 
   #Acá yo estoy haciendo la validación del valor pasado por AJAX

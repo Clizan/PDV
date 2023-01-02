@@ -166,9 +166,10 @@
    $resultado .= '<br /><br />';
    $resultado .= '<dt class="col-sm-12"> Formas de Pagamento</dt>';
    $resultado .= '<dd class="col-sm-12"><hr style="margin-top: 5px"></dd>';
-   $resultado .= '<dd class="3"><input type="radio" id="credito" name="pagamento" value="Crédito" style="margin-left: 15px"> Crédito';
-   $resultado .= '<input type="radio" id="debito" name="pagamento" value="Dédito" style="margin-left: 15px"> Débito';
-   $resultado .= '<input type="radio" id="dinheiro" name="pagamento" value="Dinheiro" style="margin-left: 15px"> Dinheiro </dd>';
+   $resultado .= '<dd class="3"><input type="radio" id="credito" name="pagamento" value="credito" style="margin-left: 15px"> Crédito';
+   $resultado .= '<input type="radio" id="debito" name="pagamento" value="debito" style="margin-left: 15px"> Débito';
+   $resultado .= '<input type="radio" id="dinheiro" name="pagamento" value="dinheiro" style="margin-left: 15px"> Dinheiro </dd>';
+   $resultado .= '<input type="radio" id="dinheiro" name="pagamento" value="pix" style="margin-left: 15px"> Pix </dd>';
    $resultado .= '</dl>'; 
 
    echo $resultado;
@@ -177,6 +178,8 @@
 
   #Acá estoy cerrando la compra hecha por una persona
   if(isset($_POST['passPurchase']) && !empty('passPurchase')){
+
+   $getPayment = $_POST['passPagamento'];
 
    #Haciendo el select en la tabela temporaria para colocar los datos en la tabela principal 
    $selectTempSell = mysqli_query($conexao, "SELECT * FROM loja.ctrl_venda_temp"); 
@@ -194,7 +197,7 @@
     foreach($selectTempSell as $sell){
 
      #Haciendo la concatenación del datos 
-     $tranferSell .= "('" .$sell['codigo_barras']. "', '" .$sell['qtde']. "', '" .$sell['preco_final']. "', '" .$dataVenda. "'),";   
+     $tranferSell .= "('" .$sell['codigo_barras']. "', '" .$sell['qtde']. "', '" .$sell['preco_final']. "', '" .$getPayment. "', '" .$dataVenda. "'),";   
 
     }
     
@@ -202,7 +205,7 @@
     $new = substr($tranferSell, 0, -1);
 
     #Acá voy hacer el insert en la database principale
-    $insertCtrlVenda = mysqli_query($conexao, "INSERT INTO loja.ctrl_venda(codigo, quantidade, total, data_venda) VALUES " . $new);
+    $insertCtrlVenda = mysqli_query($conexao, "INSERT INTO loja.ctrl_venda(codigo, quantidade, total, tipo_pagamento, data_venda) VALUES " . $new);
 
     #Acá estoy haciendo el delete de las informaciones en la tabela temporaria
     $deletaTempVenda = mysqli_query($conexao, "DELETE FROM loja.ctrl_venda_temp");

@@ -269,18 +269,19 @@
         //Acá yo estoy haciendo el caregamiento de los dados de encerramiento
         $("#view_total").modal('show');
 
-        //Acá tendremos las informaciones que están se pasando en span del modal
-        var mitigation = document.getElementById('discont').value;
-
         $('.finish').click(function(){
-
+          
+         //Acá tendremos las informaciones que están se pasando en span del modal
+         var mitigation = document.getElementById('discont').value;
+         var pagamento = document.querySelector('input[name="pagamento"]:checked').value;  
          var finalizarVenda = true;
 
          $.ajax({
           type: 'POST',
           url: '../controller/registro.php',
           data:{
-                 passPurchase  : finalizarVenda
+                 passPurchase  : finalizarVenda,
+                 passPagamento : pagamento
                },
                 success: function (resultado) {
                  $(".retorno").html(resultado);
@@ -289,7 +290,7 @@
                    window.location.reload(1);
                  }, 180); // 3 minutos
                }, 
-         });         
+         });       
 
         });
 

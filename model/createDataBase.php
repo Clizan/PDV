@@ -48,6 +48,7 @@
                                         codigo VARCHAR(50), 
                                         quantidade INT,
                                         total DECIMAL(10,2),
+                                        tipo_pagamento VARCHAR(15),
                                         data_venda DATETIME
                                        )"); 
 

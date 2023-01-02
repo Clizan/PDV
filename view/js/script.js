@@ -181,3 +181,84 @@ $(document).ready(function(){
  });
  
 });
+
+$(document).ready(function(){
+    
+  $(document).on('click', '.checkout', function(){
+
+    var subtotal = $(this).attr("id");
+
+    //Acá estamos checando se existe valor
+    if(subtotal !== ''){
+      
+     var dados = {
+                  subtotal : subtotal
+                 }; 
+
+     //Acá estamos llamando la pagina que irá hacer la consulta y finalización del total, registrando la fuerma del pago
+     $.post('../controller/registro.php', dados, function(retorna){
+
+      //Acá yo estoy ponendo el valores en span, esos están en la página registro.php
+      $("#view_close").html(retorna);
+
+      //Acá yo estoy haciendo el caregamiento de los dados de encerramiento
+      $("#view_total").modal('show');
+
+      $('.finish').click(function(){
+        
+       //Acá tendremos las informaciones que están se pasando en span del modal
+       var mitigation = document.getElementById('discont').value;
+       var pagamento = document.querySelector('input[name="pagamento"]:checked').value;  
+       var finalizarVenda = true;
+
+       $.ajax({
+        type: 'POST',
+        url: '../controller/registro.php',
+        data:{
+               passPurchase  : finalizarVenda,
+               passPagamento : pagamento
+             },
+              success: function (resultado) {
+               $(".retorno").html(resultado);
+
+              setTimeout(function() {
+                 window.location.reload(1);
+               }, 180); // 3 minutos
+             }, 
+       });       
+
+      });
+
+     }); 
+
+    }
+
+  });
+  
+ }); 
+
+ $('.deleteProducts').click(function(){
+
+  var deleteProduct = $(this).attr("id");
+
+  //Acá yo solo hago la validación, pues siempre tendrá un valor
+  if(deleteProduct !== ''){
+
+   $.ajax({
+        type: 'POST',
+        url: '../controller/registro.php',
+        data:{
+               delete  : deleteProduct
+             },
+              success: function (resultado) {
+               $(".mensagemRetorno").html("");
+
+              setTimeout(function() {
+                 window.location.reload(1);
+               }, 240); // 3 minutos
+             }, 
+   });
+
+  }
+
+ });

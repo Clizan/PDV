@@ -179,6 +179,8 @@ body{
     font-size: 12px;
     margin-left: 85px;
     margin-top: 15px;
+    height: 78vh;
+    overflow: auto;
     width: 55.7%;
 }
 

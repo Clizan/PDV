@@ -76,7 +76,7 @@
       
        <label class="titulo">Código</label>
     
-       <input type="text" class="form-control" name="codigo">
+       <input type="text" class="form-control" name="codigo" autofocus>
      
       </div>
    
@@ -98,9 +98,12 @@
       #La variable sen valor, mas que tendrá un papel importante que és armazenar los resultados del foreach
       $newPurchase = null;
 
+      #La cuantidad de product que estas poniendolo en su bolso
+      $qtd = 1;	
+
       foreach($selectProdutct AS $infoProduct){
 
-       $newPurchase .= "('" .$code. "', '".$infoProduct['desc_produto'] ."', '" .$infoProduct['qtde']. "', '" .$infoProduct['preco_final']. "'),";   
+       $newPurchase .= "('" .$code. "', '".$infoProduct['desc_produto'] ."', '" .$qtd. "', '" .$infoProduct['preco_unitario']. "'),";   
 
       }
 
@@ -112,6 +115,7 @@
 
       #Acá después del input és necesario hacer la actualización, pues tiene el resultado del POST
       header("Refresh: 0; url=venda.php");
+	
      }
    
     ?>

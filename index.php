@@ -11,51 +11,73 @@
 
   <style>
 
-.container {
-  align-items: center;
-  display: flex;
-  height: 100vh;
-  flex-direction: row;
-  justify-content: center;
-  width: 100vw;
-}
-
-.box {
-width: 300px;
-height: 300px;
-background: #fff;
+html {
+  height: 100%;
+  overflow: hidden;
 }
 
 body {
-margin: 0px;
+  margin:0;
+  padding:0;
+  font-family: sans-serif;
+  background: linear-gradient(#9d5f7e, #243b55);
 }
 
-.lblInfoUsuario{
-  margin-top: 20px;
+.login-box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 400px;
+  padding: 40px;
+  transform: translate(-50%, -50%);
+  background: rgba(0,0,0,.5);
+  box-sizing: border-box;
+  box-shadow: 0 15px 25px rgba(0,0,0,.6);
+  border-radius: 10px;
 }
 
-#logo{
-  height: 140px;
-  margin-top: 25px;
+.login-box h2 {
+  margin: 0 0 30px;
+  padding: 0;
+  color: #fff;
+  text-align: center;
 }
 
-#txtLogin, #txtSenha{
-  border: 1px solid lightgray;
-  border-radius: 5px;
-  padding: 5px;
-  outline: 0;
+.login-box .user-box {
+  position: relative;
 }
 
-#entrar{
-  margin-top: 20px;
-  width: 135%;
+.login-box .user-box input {
+  width: 100%;
+  padding: 10px 0;
+  font-size: 16px;
+  color: #fff;
+  margin-bottom: 30px;
+  border: none;
+  border-bottom: 1px solid #fff;
+  outline: none;
+  background: transparent;
+}
+.login-box .user-box label {
+  position: absolute;
+  top:0;
+  left: 0;
+  padding: 10px 0;
+  font-size: 16px;
+  color: #fff;
+  pointer-events: none;
+  transition: .5s;
 }
 
-.retornoLogin{
+.login-box .user-box input:focus ~ label,
+.login-box .user-box input:valid ~ label {
+  top: -20px;
+  left: 0;
+  color: #03e9f4;
   font-size: 12px;
-  margin-top: 10px;
-  width: 116%;
 }
+
+
 
   </style>
 
@@ -64,33 +86,33 @@ margin: 0px;
 
   <div class="container">
 
-   <div class="box">
-     
-    <form action="valida.php" method="POST">
+   <div class="box">     
   
-     <div class="row">
-
-      <div class="col-sm-6">
-
-       <img id="logo" src="./view/img/login.png">
-
+    <div class="login-box">
+  
+     <h2>Login</h2>
+  
+     <form>
+   
+      <div class="user-box">
+    
+       <input type="text" name="" required="">    
+       <label>Usuário</label>
+    
       </div>
-
-      <div class="col-sm-6"> 
-
-       <label class="lblInfoUsuario">Usuário</label>
-       <input type="text" id="txtLogin" name="user">
-
-       <label class="lblInfoUsuario">Senha</label>
-       <input type="password" id="txtSenha" name="pass">
-
-       <button class="btn btn-success" id="entrar">Entrar</button>
-
+    
+      <div class="user-box">
+    
+       <input type="password" name="" required="">
+       <label>Senha</label>
+    
       </div>
-     
-     </div>
+    
+      <button class="btn btn-success">Acessar</button>
+    
+     </form>
 
-    </form>
+    </div>
    
    </div>
 

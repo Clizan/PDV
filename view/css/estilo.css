@@ -7,6 +7,7 @@ body{
 .bodyMenu{
     background-color: #9d5f7e;
     overflow: hidden;
+    zoom: 100%;
 }
 
 .menu{
@@ -27,7 +28,12 @@ body{
     width: 110px;
 }
 
-.menu li a{color:#fff; text-decoration:none; padding:5px 10px; display:block;}
+.menu li a{
+    color:#fff; 
+    display:block;
+    padding:5px 10px; 
+    text-decoration:none; 
+}
 
 .menu li a:hover{
     background:#45102a;
@@ -37,7 +43,7 @@ body{
     text-shadow:0px 0px 5px #fff;
 }
 
-.menu li  ul{
+.menu li ul{
     background-color: #ab7690;
     display: none;
     left: 0;
@@ -55,11 +61,11 @@ body{
     margin-top: 15px;
 }
 
-.menu li:hover ul, .menu li.over ul{display:block;}
+.menu li:hover ul, .menu li.over ul{display:block; height: 50px;}
 
 .menu li ul li{
     display: block;
-    margin-left: 0px;
+    margin-left: -30px;
     width: 110px;
 }
 
@@ -80,6 +86,7 @@ body{
     margin-top: 20px;
     width: 28px;
 }
+
 
 #valorMei{
     background-color: #e5f0fa;
@@ -143,7 +150,6 @@ body{
     border: 1px solid lightgray;
     border-radius: 5px;
     height: 7rem;
-    margin-left: 100px;
     margin-top: 40px;
     padding: 5px;
     width: 25%;
@@ -175,12 +181,11 @@ body{
     width: 25%;
 }
 
-.viewNotas{
+.tabelaVencimento{
     font-size: 12px;
-    margin-left: 85px;
+    height: 62vh;
+    margin-left: -10px;
     margin-top: 15px;
-    height: 78vh;
-    overflow: auto;
     width: 55.7%;
 }
 

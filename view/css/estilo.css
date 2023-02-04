@@ -12,6 +12,10 @@ body {
     overflow: hidden;
     padding:0;
 }
+
+.images{
+    text-align: center;
+}
   
 .login-box {
     background: rgba(0,0,0,.5);

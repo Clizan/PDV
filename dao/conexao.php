@@ -8,7 +8,7 @@
   private $nomeBanco;
   private $banco;
 
-  function __construct($servidor = "localhost", $usuario = "root", $senha = "", $nomeBanco = "loja"){
+  function __construct($servidor = 'localhost',$usuario = 'root',$senha = '',$nomeBanco = 'loja'){
    $this->SetServidor($servidor);
    $this->SetServidor($usuario);
    $this->SetServidor($senha);

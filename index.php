@@ -1,3 +1,40 @@
+<?php 
+
+ require __DIR__.'/vendor/autoload.php';
+
+ use \App\Controller\Pages\Home;
+
+ echo Home::getHome();
+
+?>
+
+
+<?php 
+/*
+
+include_once './dao/conexao.php'; 
+ $cx = new Conexao($servidor = "localhost", $usuario = "root", $senha = "", $nomeBanco = "loja");
+ 
+ 
+ #Verificando se houve o submit do botão
+ if (isset($_POST['usuario']) && !empty($_POST['senha'])){
+  
+  #incluindo a classe que fará a rota com o banco de dados
+  include_once './controller/rota.php';  
+
+  #variaveis que armazena o valor do post
+  $login = $_POST['usuario'];
+  $senha = $_POST['senha'];
+
+  #passando os parâmetros para a classe de rota
+  $rota = new Rota();
+  $rota->getLogin($login, $senha);
+
+ }
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -18,21 +55,29 @@
    <div class="box">     
   
     <div class="login-box">
+
+     <div class="images">
+
+      <img src="./view/img/logotipo.png" width="128" height="128">
+
+     </div> 
+
+     <br />
   
      <h2>Login</h2>
   
-     <form>
+     <form id="login" method="POST">
    
       <div class="user-box">
     
-       <input type="text" name="" required="">    
+       <input type="text" name="usuario" required="">    
        <label>Usuário</label>
     
       </div>
     
       <div class="user-box">
     
-       <input type="password" name="" required="">
+       <input type="password" name="senha" required="">
        <label>Senha</label>
     
       </div>
@@ -50,3 +95,7 @@
  </body>
 
 </html>
+
+*/
+
+?>

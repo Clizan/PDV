@@ -4,7 +4,7 @@
 
  use \App\Utils\View;
 
- class Home{
+ class Home extends Page{
 
   /**
    * Método responsável por retornar o conteúdo (view) da nossa home
@@ -13,10 +13,13 @@
 
   public static function getHome(){
 
-    return View::render('pages/home', [
+    $content = View::render('pages/home', [
       'name' => 'Clizan - Canal',
       'description' => 'Canal'
     ]);
+
+    #Retorna a view da página
+    return parent::getPage('Index', $content);
   }  
 
  }

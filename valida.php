@@ -15,9 +15,11 @@
   
   if($select->num_rows > 0){
 
-   sleep(3);  
+   echo $retorna = 1; 
+
+   /*sleep(3);  
    header("Location: ./view/menu.php");
- 
+ */
   }else{
    
    sleep(3); 

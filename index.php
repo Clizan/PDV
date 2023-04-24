@@ -1,37 +1,6 @@
 <?php 
-
- require __DIR__.'/vendor/autoload.php';
-
- use \App\Controller\Pages\Home;
-
- echo Home::getHome();
-
-?>
-
-
-<?php 
-/*
-
-include_once './dao/conexao.php'; 
- $cx = new Conexao($servidor = "localhost", $usuario = "root", $senha = "", $nomeBanco = "loja");
- 
- 
- #Verificando se houve o submit do botão
- if (isset($_POST['usuario']) && !empty($_POST['senha'])){
-  
-  #incluindo a classe que fará a rota com o banco de dados
-  include_once './controller/rota.php';  
-
-  #variaveis que armazena o valor do post
-  $login = $_POST['usuario'];
-  $senha = $_POST['senha'];
-
-  #passando os parâmetros para a classe de rota
-  $rota = new Rota();
-  $rota->getLogin($login, $senha);
-
- }
-
+ #incluindo a classe de conexão
+ include_once './model/conexao.php'; 
 
 ?>
 
@@ -42,10 +11,8 @@ include_once './dao/conexao.php';
  <title>Login</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <link rel="stylesheet" type="text/css"  href="./view/css/estilo.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
 
  </head>
  <body>
@@ -58,44 +25,98 @@ include_once './dao/conexao.php';
 
      <div class="images">
 
-      <img src="./view/img/logotipo.png" width="128" height="128">
+      <img src="./view/img/logotipo.png" width="164" height="164">
 
      </div> 
 
-     <br />
-  
-     <h2>Login</h2>
-  
-     <form id="login" method="POST">
+     <br />  
    
-      <div class="user-box">
+     <div class="user-box">
     
-       <input type="text" name="usuario" required="">    
-       <label>Usuário</label>
+      <input type="text" id="user" required="">    
+      <label>Usuário</label>
     
-      </div>
+     </div>
     
-      <div class="user-box">
+     <div class="user-box">
     
-       <input type="password" name="senha" required="">
-       <label>Senha</label>
+      <input type="password" id="pass" required="">
+      <label>Senha</label>
     
-      </div>
-    
-      <button class="btn btn-success">Acessar</button>
-    
-     </form>
+     </div>
 
+     <div>
+     <label id="carregando" style="margin-top: -10px"></label>
+     </div>
+
+     <div class="progress" style="height: 10px; margin-top: 0px">
+        <div id="progressBar" class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+</div>
+
+     <br />
+    
+     <button class="btn btn-success" id="acessar">Acessar</button>
+    
     </div>
    
    </div>
 
   </div>
- 
+
+  <!--Aca estan las bibliotecas que hacen los efectos visuales en la pagina -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script><!--Bibliotecas Ajax -->
+
+  <script>
+
+   $(document).ready(function(){
+    
+    $(document).on('click', '#acessar', function(){
+
+     var usuario = document.getElementById("user").value; 
+     var senha   = document.getElementById("pass").value;  
+
+     var dados = {
+        user : usuario,
+        pass : senha
+     }   
+
+     $.post('valida.php', dados, function(retorna){
+
+        var retorno = $("#retorno").html(retorna);
+
+        if(retorno !== null){
+
+            let barra = document.getElementById("progressBar");
+            let carga = 0;
+            let intBarra = setInterval(()=>{
+                barra.style.width = carga + "%";
+                carga++;
+
+                if(carga <= 30){
+
+                    document.querySelector("#carregando").textContent  = "Carregando módulos.";
+
+                    
+                }else if(carga > 99){
+                    //window.location.href = "./view/menu.php";
+                }
+
+            }, 0);
+
+        }
+   
+     });
+
+    });
+
+  });
+
+  </script>
+
  </body>
 
 </html>
 
-*/
 
-?>

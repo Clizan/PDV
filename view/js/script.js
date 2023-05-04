@@ -1,3 +1,56 @@
+//script responsable por hacer la validación en la pantalla del login
+$(document).ready(function(){
+    
+ $(document).on('click', '#acessar', function(){
+
+  var usuario = document.getElementById("user").value; 
+  var senha   = document.getElementById("pass").value;  
+
+  var dados = {
+   user : usuario,
+   pass : senha
+  }   
+
+  if(usuario != '' && senha != ''){
+   
+   $.post('valida.php', dados, function(retorna){
+
+    var retorno = $("#retorno").html(retorna);
+
+    if(retorno !== null){
+
+     let barra = document.getElementById("progressBar");
+     let carga = 0;
+     let intBarra = setInterval(()=>{
+      barra.style.width = carga + "%";
+      carga++;
+
+      if(carga <= 30){
+
+       document.querySelector("#carregando").textContent  = "Carregando módulos.";
+                  
+      }else if(carga <=60){
+
+       document.querySelector("#carregando").textContent  = "Carregando tabelas.";
+
+      }else if(carga <=100){
+       document.querySelector("#carregando").textContent  = "Carregando o sistema.";
+       window.location.href = "./view/menu.php";
+      }
+
+     }, 40);
+
+    }
+ 
+   });
+
+  }
+
+ });
+
+});
+
+
 //Script necesario para hacer las aciones posibles para insercíon
 $('#cadastrar').click(function(){
 

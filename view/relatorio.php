@@ -64,7 +64,11 @@
 
    </div>
 
-   <div id="columnchart_material" style="width: 800px; height: 500px;"></div>
+   <div class="container">
+
+    <div id="columnchart_material" style="width: 800px; height: 500px;"></div>
+
+   </div>
 
   </div> 
 
@@ -76,22 +80,23 @@
 
       function drawChart() {
         var data = google.visualization.arrayToDataTable([
-          ['Year', 'Crédito', 'Débito', 'Dinheiro', 'Pix'],
+          ['Dia', 'Total'],
 
           <?php 
            include_once '../model/conexao.php';
 
-           $sql = $conexao->query("SELECT tipo_pagamento, SUM(total) AS pagamento FROM loja.ctrl_venda GROUP BY tipo_pagamento");
+           $sql = $conexao->query("SELECT DAY(data_venda) as dia, SUM(total) AS pagamento FROM loja.ctrl_venda GROUP BY DATE(data_venda) ORDER BY DATE(data_venda)");
 
            foreach($sql as $rows => $values){
 
-            $tPayment = $values['tipo_pagamento'];
+            $dia      = $values['dia'];
             $payment  = $values['pagamento'];
 
           ?>  
 
-          ['2014', '<?php echo $tPayment?>', <?php echo $payment?>, 200, ],
-<?php
+          ['<?php echo $dia?>', '<?php echo $payment?>'],
+
+      <?php
 
         }
           
@@ -100,8 +105,8 @@
 
         var options = {
           chart: {
-            title: 'Company Performance',
-            subtitle: 'Sales, Expenses, and Profit: 2014-2017',
+            title: 'Relatórios de Venda',
+            subtitle: 'Mensal',
           }
         };
 

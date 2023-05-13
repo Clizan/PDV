@@ -85,7 +85,7 @@
           <?php 
            include_once '../model/conexao.php';
 
-           $sql = $conexao->query("SELECT DAY(data_venda) as dia, SUM(total) AS pagamento FROM loja.ctrl_venda GROUP BY DATE(data_venda) ORDER BY DATE(data_venda)");
+           $sql = $conexao->query("SELECT DAY(data_venda) as dia, SUM(total) AS pagamento FROM loja.ctrl_venda WHERE MONTH(data_venda) = MONTH(NOW()) GROUP BY DATE(data_venda) ORDER BY DATE(data_venda)");
 
            foreach($sql as $rows => $values){
 

@@ -1,55 +1,70 @@
-//script responsable por hacer la validación en la pantalla del login
-$(document).ready(function(){
-    
- $(document).on('click', '#acessar', function(){
+   //Click no butão de acessar
+   $('#acessar').click(function(){
+      
+    //variavel coletada através do id HTML
+    var usuario = document.getElementById("usuario").value;
+    var senha = document.getElementById("senha").value;
 
-  var usuario = document.getElementById("user").value; 
-  var senha   = document.getElementById("pass").value;  
+    $.ajax({
+        url: "pagina.php",
+        method: "POST",
+        data: { usuario: usuario, senha: senha },
+        success: function(response) {
 
-  var dados = {
-   user : usuario,
-   pass : senha
-  }   
+         //script responsable por hacer la validación en la pantalla del login
+         $(document).ready(function(){
+         
+          document.getElementById('resultado').style.display = 'none';
+          document.getElementById("resultado").textContent = response;
 
-  if(usuario != '' && senha != ''){
+          var resultado = document.getElementById("resultado").innerHTML;
+
+          if(resultado === `"1"`){
+           
+           let barra = document.getElementById("progressBar");
+           let carga = 0;
+           let intBarra = setInterval(()=>{
+            barra.style.width = carga + "%";
+            carga++;
    
-   $.post('valida.php', dados, function(retorna){
+            if(carga <= 30){
+   
+             document.querySelector("#carregandoInformacao").textContent  = "Carregando módulos.";
+                     
+            }else if(carga <=60){
+   
+             document.querySelector("#carregandoInformacao").textContent  = "Carregando tabelas.";
+   
+            }else if(carga == 100){
+             document.querySelector("#carregandoInformacao").textContent  = "Carregando o sistema.";
+             //window.location.href = "../view/menu.php";
+            }
+   
+           }, 80);
+          
+          }else{
+          
+            //site que sweetalert (https://sweetalert2.github.io/#download)
+            Swal.fire({
+             title: 'Error!',
+             text: 'Usuário ou senha invalida!',
+             icon: 'error',
+             showConfirmButton: false,
+             timer: 2500
+            })
 
-    var retorno = $("#retorno").html(retorna);
+          }
+        
+         });
+       
+        },
+        error: function(xhr, status, error) {
+            console.log(error);
+        }
+    
+       });
 
-    if(retorno !== null){
-
-     let barra = document.getElementById("progressBar");
-     let carga = 0;
-     let intBarra = setInterval(()=>{
-      barra.style.width = carga + "%";
-      carga++;
-
-      if(carga <= 30){
-
-       document.querySelector("#carregando").textContent  = "Carregando módulos.";
-                  
-      }else if(carga <=60){
-
-       document.querySelector("#carregando").textContent  = "Carregando tabelas.";
-
-      }else if(carga <=100){
-       document.querySelector("#carregando").textContent  = "Carregando o sistema.";
-       window.location.href = "./view/menu.php";
-      }
-
-     }, 40);
-
-    }
- 
-   });
-
-  }
-
- });
-
-});
-
+     });
 
 //Script necesario para hacer las aciones posibles para insercíon
 $('#cadastrar').click(function(){

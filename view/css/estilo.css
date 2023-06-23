@@ -293,11 +293,14 @@ body {
 
 #acessar{
     background-color: #7a7a7a; 
-    border-color: #7a7a7a
+    border-color: #7a7a7a;
+    margin-top: 10px;
+
 }
 
 #progressBar{
     background-color: darkgray;
+    margin-top: -20px;
 }
 
 .info_progress{
@@ -313,4 +316,10 @@ body {
 
 .progress{
     height: 10px;
+}
+
+#carregandoInformacao{
+    color: #FFF;
+    font-size: 12px;
+    font-style: italic;
 }

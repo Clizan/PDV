@@ -10,158 +10,84 @@
   <link rel="stylesheet" type="text/css"  href="./css/estilo.css" />
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        .menu-container {
+            display: flex;
+            justify-content: center;
+        }
 
- </head>
- 
- <body class="bodyMenu">
+        .menu {
+            display: flex;
+            list-style: none;
+            font-size: 14px;
+            margin: 0;
+            padding: 0;
+        }
 
-  <div class="container-fluid">
+        .menu li {
+            margin: 0 10px;
+            position: relative;
+            width: 100px;
+        }
 
-   <div class="row">
+        .menu li a {
+            color: #000;
+            text-decoration: none;
+        }
 
-    <div class="col-sm-12">
+        .sub-menu {
+            display: none;
+            margin-left: -40px;
+            position: absolute;
+            top: 100%;
+            width: 100px;
+        }
 
-     <nav>
-   
-      <ul class="menu">
-    
-       <li><a href="menu.php"><img src="./img/home.png" id="home"> Home </a></li>
- 	     <li><a href="#"><img src="./img/price.png"> Produtos </a>
-	
-        <ul>
-	 
-         <li><a href="cadastro.php"><img src="./img/cadastrar.png"> Cadastro </a></li>
-	       <li><a href="estoque.php"><img src="./img/estoque.png"> Estoque </a></li>
-	       <li><a href="venda.php"><img src="./img/venda.png"> Venda </a></li>
-     
+        .menu li:hover .sub-menu {
+            display: block;
+        }
+
+        .sub-menu li {
+            margin: 5px 0;
+            list-style-type: none;
+            z-index: 9999;
+        }
+
+        .sub-menu li a {
+            color: #000;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="menu-container">
+        <ul class="menu">
+            <li><a href="#"><img src="./img/home.png" id="home">Home</a></li>
+            <li>
+                <a href="#"><img src="./img/price.png">Produtos</a>
+                <ul class="sub-menu">
+                    <li><a href="#"><img src="./img/cadastrar.png">Cadastro</a></li>
+                    <li><a href="#"><img src="./img/estoque.png">Estoque</a></li>
+                    <li><a href="#"><img src="./img/venda.png">Venda</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">Notas</a>
+                <ul class="sub-menu">
+                    <li><a href="#"><img src="./img/cadastrar.png">Cadastrar</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">Relatórios</a>
+                <ul class="sub-menu">
+                    <li><a href="#"><img src="./img/money.png">Contabilidade</a></li>
+                </ul>
+            </li>
         </ul>
-    
-       </li>
-	
-       <li><a href="#"> Notas </a>
-        
-        <ul>
-        
-         <li><a href="notaFiscal.php"><img src="./img/cadastrar.png"> Cadastrar</a></li>
-
-        </ul>
-       
-       </li>
-
-  	   <li><a href="#">Relatórios</a>
-       
-        <ul>
- 
-         <li><a href="relatorio.php"><img src="./img/money.png"> Contabilidade </a></li>
-
-        </ul>
-
-       </li>
-
-      </ul>
-
-     </nav>
-
     </div>
 
-   </div> 
-
-   <div class="container">
-
-    <div class="row">
-
-     <div class="col-sm-4 totalNotas">
-    
-      <h5 class="legendaCards">Notas Cadastradas</h5> 
-      
-     </div>
-
-     <div class="col-sm-4 totalProdutos">
-    
-      <h5 class="legendaCards">Quantidade de Produtos</h5>
-        
-     </div>
-    
-     <div class="col-sm-4 totalVendas">
-     
-      <h5 class="legendaCards">Vendas</h5>
-    
-     </div>
-
-     <div class="col-sm-4 tabelaVencimento">
-
-      <table class="table table-bordered table-sm table-striped detalhesVencimento">
-  
-       <thead class="table-dark">
-
-        <tr>
-
-         <th scope="col" class="tituloFixoCodigo">CODIGO_BARRAS</th>
-         <th scope="col" class="tituloFixoProduto">PRODUTO</th>
-         <th scope="col" class="tituloFixoQtd">QTDE</th>
-         <th scope="col" class="tituloFixoValidade">VALIDADE</th>
-
-        </tr>
-
-       </thead>
-
-       <tbody>
-
-        <tr>
-
-         <?php 
-            
-          #Acá estamos haciendo lo include para la classe de conexión
-          include_once '../model/conexao.php';
-
-          #Acá estamos haciendo lo include para la classe datas
-          include_once '../controller/datas.php';
-
-          #Realizando a consulta das notas cadastradas
-          $sql = $conexao->query("SELECT 
-                                   cod_barras, 
-                                   desc_produto, 
-                                   qtde, 
-                                   validade 
-                                  FROM 
-                                   loja.ctrl_produto 
-                                  WHERE 
-                                   validade <='$actualMonth'
-                                  AND
-                                   validade <> '0000-00-00'");
-
-          #valida se há retorno ou se há dados cadastrados
-          if($sql->num_rows > 0){
-
-           #percorrendo os resultados que estão armazenados na variavel 'sql' 
-           foreach($sql as $nota){
-
-         ?>
-
-         <td class="larguraCodBarras"><?php echo $nota['cod_barras']?></td>
-         <td class="larguraProduto"><?php echo $nota['desc_produto']?></td>
-         <td class="larguraQtdVencimento"><?php echo $nota['qtde']?></td>
-         <td><?php echo $nota['validade']?></td>
-  
-        </tr>
-
-        <?php 
-          }
-         }
-        ?>
-        
-       </tbody>
-
-      </table>
-
-     </div>
-
-    </div> 
-
-   </div>
-
-  </div> 
-
- </body>
+</body>
 
 </html>

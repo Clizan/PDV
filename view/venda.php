@@ -76,7 +76,7 @@
       
        <label class="titulo">Código</label>
     
-       <input type="text" class="form-control" name="codigo" autofocus>
+       <input type="text" class="form-control" name="codigo" onchange="verificarStatus(this.value)" autofocus>
      
       </div>
    
@@ -252,7 +252,64 @@
 
    </div>
 
+   <div class="modal fade" id="meuModal" tabindex="-1" role="dialog" aria-labelledby="meuModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="meuModalLabel">Produto não cadastrado</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <!-- Conteúdo do modal -->
+        <label>Valor: </label>
+        <input type="text" id="valor">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success adicionar_carrinho">Adicionar</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
    <script src="./js/script.js"></script><!--Script for page timeout-->
+   <script>
+function verificarStatus(valor) {
+  if (valor === "1") {
+    // Se a opção "EQUIPAMENTO INICIALIZADO" for selecionada, abra o modal
+    $('#meuModal').modal({ backdrop: 'static', keyboard: false });
+  }
+}
+</script>
+<script>
+  $('.adicionar_carrinho').click(function(){
+
+    var valor_produto = document.getElementById('valor').value;
+
+    $.ajax({
+          type: 'POST',
+          url: '../controller/registro.php',
+          data:{
+                 nao_cadastrado   : valor_produto
+               },
+                success: function (resultado) {
+                 $(".retorno").html(resultado);
+
+                setTimeout(function() {
+                   window.location.reload(1);
+                 }, 1800); // 3 minutos
+               },
+                error: function () {
+               }
+
+        });
+
+  });
+</script>
    
  </body>
 

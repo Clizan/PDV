@@ -225,6 +225,14 @@
 
   }
 
+  if(isset($_POST['sem_cadastro']) && !empty($_POST['sem_cadastro'])){
+
+    $valor = $_POST['sem_cadastro'];
+
+    $insert = $conexao->query("INSERT INTO loja.ctrl_venda_temp (preco_final) VALUES ('$valor')");
+
+  }
+
  ?>
 
 </div>

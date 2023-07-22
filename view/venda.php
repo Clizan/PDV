@@ -282,6 +282,27 @@ function verificarStatus(valor) {
   if (valor === "1") {
     // Se a opção "EQUIPAMENTO INICIALIZADO" for selecionada, abra o modal
     $('#meuModal').modal({ backdrop: 'static', keyboard: false });
+
+    $('.adicionar_carrinho').click(function(){
+
+      var valor = document.getElementById('valor').value;
+
+      $.ajax({
+        type: 'POST',
+        url: '../controller/registro.php',
+        data:{
+               sem_cadastro  : valor
+             },
+              success: function () {
+
+              setTimeout(function() {
+                 window.location.reload(1);
+               }, 0); // 3 minutos
+             }, 
+       }); 
+
+    });
+
   }
 }
 </script>

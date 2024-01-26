@@ -6,4 +6,21 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Login</title>
     </head>
+
+    <body>
+
+        <div id="login">
+
+            <div class="caixa">
+                <input type="login" placeholder="Usuario">
+            </div>
+
+            <div>
+                <input type="senha" placeholder="Senha">
+            </div>
+
+        </div>
+
+    </body>
+
 </html> 

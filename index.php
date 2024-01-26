@@ -12,13 +12,21 @@
         <div id="login">
 
             <div class="caixa">
-                <input type="login" placeholder="Usuario">
-            </div>
 
-            <div>
-                <input type="senha" placeholder="Senha">
-            </div>
+                <div class="usuario">
+                    <input type="login" placeholder="Usuario">
+                </div>
 
+                <div class="senha">
+                    <input type="senha" placeholder="Senha">
+                </div>
+
+                <div class="entrar">
+                    <button class="btn btn-success">Entrar</button>
+                </div>
+
+            </div>
+                
         </div>
 
     </body>

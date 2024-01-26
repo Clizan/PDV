@@ -335,6 +335,3 @@ function verificarStatus(valor) {
  </body>
 
 </html>
-
-
-

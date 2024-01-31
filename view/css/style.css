@@ -13,10 +13,22 @@ body{
 }
 
 .usuario input{
-    border-radius: 15px;
+    background-color: #1e1c2e;
     border: none;
-    width: 250px;
+    border-radius: 15px;
+    color: #b6b6b6;
     height: 40px;
     padding-left: 15px;
+    width: 250px;
+}
+
+.senha input{
     background-color: #1e1c2e;
+    border: none;
+    border-radius: 15px;
+    color: #b6b6b6;
+    height: 40px;
+    padding-left: 15px;
+    margin-top: 15px;
+    width: 250px;
 }

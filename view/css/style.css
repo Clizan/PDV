@@ -32,3 +32,12 @@ body{
     margin-top: 15px;
     width: 250px;
 }
+
+.entrar button{
+    border: none;
+    border-radius: 20px;
+    color: #fff;
+    cursor: pointer;
+    height: 30px;
+    width: 250px;
+}

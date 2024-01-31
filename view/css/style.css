@@ -3,3 +3,11 @@ body{
     color: #fff;
     font-family: 'Roboto', sans-serif;
 }
+
+#login{
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    text-align: center;
+}

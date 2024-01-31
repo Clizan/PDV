@@ -38,6 +38,10 @@ body{
     border-radius: 20px;
     color: #fff;
     cursor: pointer;
-    height: 30px;
+    height: 35px;
     width: 250px;
+}
+
+input::placeholder{
+    color: #b6b6b6;
 }

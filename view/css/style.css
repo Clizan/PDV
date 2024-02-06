@@ -39,6 +39,7 @@ body{
     color: #fff;
     cursor: pointer;
     height: 35px;
+    margin-top: 15px;
     width: 250px;
 }
 
@@ -52,4 +53,12 @@ h1{
 
 .caixa{
     margin-top: 65px;
+}
+
+.caixa img{
+    width: 115px;
+}
+
+input{
+    outline: none;
 }

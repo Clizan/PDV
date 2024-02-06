@@ -16,6 +16,8 @@
 
             <div class="caixa">
 
+                <img src="./view/img/logotipo.png" alt="">
+
                 <h1>LOGIN</h1>
 
                 <div class="usuario">

@@ -21,11 +21,11 @@
                 <h1>LOGIN</h1>
 
                 <div class="usuario">
-                    <input type="login" placeholder="Usuario">
+                    <input id="login" type="login" placeholder="Usuario">
                 </div>
 
                 <div class="senha">
-                    <input type="senha" placeholder="Senha">
+                    <input id="senha" type="senha" placeholder="Senha">
                 </div>
 
                 <div class="entrar">

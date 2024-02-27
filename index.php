@@ -48,6 +48,7 @@
 
             /*The variables of the page for to log-in*/
             var user = document.getElementById('#login');
+            var pass = document.getElementById('#senha');
             
             /*Navegation of the page, case the fields is complete and correct*/
             $.ajax({

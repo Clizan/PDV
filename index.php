@@ -32,6 +32,10 @@
                     <button class="btn btn-success" id="entrar">Entrar</button>
                 </div>
 
+                <div class="mensagem">
+                    
+                </div>
+
             </div>
                 
         </div>
@@ -49,6 +53,8 @@
             /*The variables of the page for to log-in*/
             var user = document.getElementById('#login');
             var pass = document.getElementById('#senha');
+
+            if(user !== "")
             
             /*Navegation of the page, case the fields is complete and correct*/
             $.ajax({

@@ -29,7 +29,7 @@
                 </div>
 
                 <div class="entrar">
-                    <button class="btn btn-success">Entrar</button>
+                    <button class="btn btn-success" id="entrar">Entrar</button>
                 </div>
 
             </div>
@@ -42,5 +42,26 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <script src="./js/script.js"></script><!--Script for page timeout-->
+    <script>
+        /*Here click in button for to action the oter page*/
+        $('#entrar').click(function(){
+
+            /*The variables of the page for to log-in*/
+            var user = document.getElementById('#login');
+            
+            /*Navegation of the page, case the fields is complete and correct*/
+            $.ajax({
+                type: 'POST',
+                url: '',
+                data:{},
+                success: function(){
+                    
+                }
+            })
+
+        });
+
+
+    </script>
 
 </html> 

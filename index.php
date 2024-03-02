@@ -65,11 +65,15 @@
             $("#mensagem").html("<div class='alert alert-danger' role='alert'>Preencha os campos para continuar! </div>");
 
         } else {
-          /*Navegation of the page, case the fields is complete and correct*/
-                        $.ajax({
+          
+            /*Navegation of the page, case the fields is complete and correct*/
+            $.ajax({
                 type: 'POST',
                 url: '',
-                data: {},
+                data: {
+                        usuario : user, 
+                        senha : pass
+                },
                 success: function() {
 
                 }

@@ -63,3 +63,10 @@ h1{
 input{
     outline: none;
 }
+
+.retorno_mensagem{
+    height: 35px;
+    font-size: 12px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin-top: 15px;
+}

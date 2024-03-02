@@ -33,7 +33,11 @@
                 <button class="btn btn-success" id="entrar">Entrar</button>
             </div>
 
-            <label id="mensagem"></label>
+            <div class="retorno_mensagem">
+
+                <label id="mensagem"></label>
+
+            </div>
 
         </div>
 
@@ -53,11 +57,16 @@
         var user = document.getElementById('#login');
         var pass = document.getElementById('#senha');
 
-        /*The validation if contains information in the variable*/
-        if (user !== "" || pass !== "") {
+        console.log(user);
 
-            /*Navegation of the page, case the fields is complete and correct*/
-            $.ajax({
+        /*The validation if contains information in the variable*/
+        if (user === null || pass === null) {
+
+            $("#mensagem").html("<div class='alert alert-danger' role='alert'>Preencha os campos para continuar! </div>");
+
+        } else {
+          /*Navegation of the page, case the fields is complete and correct*/
+                        $.ajax({
                 type: 'POST',
                 url: '',
                 data: {},
@@ -65,10 +74,6 @@
 
                 }
             })
-
-        } else {
-
-            $("#mensagem").html("<div class='alert alert-danger' role='alert'>Preencha os campos para continuar! </div>");
 
         }
 

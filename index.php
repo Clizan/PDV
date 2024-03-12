@@ -54,10 +54,8 @@
     $('#entrar').click(function() {
 
         /*The variables of the page for to log-in*/
-        var user = document.getElementById('#login');
-        var pass = document.getElementById('#senha');
-
-        console.log(user);
+        var user = document.getElementById('login').value;
+        var pass = document.getElementById('senha').value;
 
         /*The validation if contains information in the variable*/
         if (user === null || pass === null) {
@@ -69,7 +67,7 @@
             /*Navegation of the page, case the fields is complete and correct*/
             $.ajax({
                 type: 'POST',
-                url: '',
+                url: 'valida.php',
                 data: {
                         usuario : user, 
                         senha : pass

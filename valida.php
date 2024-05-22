@@ -1,11 +1,14 @@
 <?php
- 
+
+ # Acá voy a incluir la clase conexíon
+ include_once './model/conexao.php';
+
  #Acá estamos checkando se la variable tuve un POST 
  if(isset($_POST['usuario']) && !empty($_POST['senha'])){
 
   #Variable con su valor pasado por Javascript
-  $usuario = $_POST["usuario"];
-  $senha = $_POST["senha"];
+  $getUser = $_POST["usuario"];
+  $getPass = $_POST["senha"];
 
   #Variable responsable por tener el valor de retorno para la pantalla index.php
   $retorno = null;

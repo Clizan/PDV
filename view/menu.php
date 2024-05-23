@@ -13,6 +13,49 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">   
     <style>
 
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        body{
+            height: 100vh;
+
+        }
+
+        nav.menu-lateral{
+            width: 300px;
+            height: 100%;
+            background-color: #202020;
+            padding: 40px 0 40px 1%;
+        }
+
+        .btn-expandir{
+            width: 100%;
+            padding-left: 10px;
+        }
+
+        .btn-expandir > i{
+            color: #fff;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        ul{
+            height: 100%;
+            list-style-type: none;
+        }
+
+        ul li.item-menu a{
+            color: #fff;
+            text-decoration: none;
+            font-size: 20px;
+            padding: 20px 4%;
+            display: flex;
+        }
+
     </style>
 
 </head>

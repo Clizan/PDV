@@ -48,12 +48,26 @@
             list-style-type: none;
         }
 
+        ul li.item-menu:hover{
+            background: #FF0077;
+        }
+
         ul li.item-menu a{
             color: #fff;
             text-decoration: none;
             font-size: 20px;
             padding: 20px 4%;
             display: flex;
+            margin-bottom: 20px;
+            line-height: 15px;
+        }
+
+        ul li.item-menu a .txt-link{
+            margin: 10px;
+        }
+
+        ul li.item-menu a .icon > i{
+            font-size: 30px;
         }
 
     </style>
